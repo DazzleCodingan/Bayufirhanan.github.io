@@ -1,0 +1,221 @@
+/* ========================================================
+   STYLE CUSTOM - THEME LIQUIDITY WAVES (CYAN & PURPLE DARK)
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --bg-main: #030712;
+    --card-bg: #080f24;
+    --cyan: #00d2ff;
+    --cyan-light: #70e4ff;
+    --blue: #38bdf8;
+    --purple: #a855f7;
+    --purple-light: #c084fc;
+    --cyan-glow: rgba(0, 210, 255, 0.45);
+    --purple-glow: rgba(168, 85, 247, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-main);
+    color: #f8fafc;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--bg-main);
+    min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+::-webkit-scrollbar-thumb {
+    background: #111c38;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cyan);
+}
+
+/* Text Selection */
+::selection {
+    background: var(--cyan);
+    color: #030712;
+}
+
+/* Glassmorphism Classes */
+.glass {
+    background: rgba(8, 15, 36, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+.glass-card {
+    background: rgba(8, 15, 36, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 210, 255, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 210, 255, 0.15);
+}
+
+.glass-card-purple:hover {
+    border-color: rgba(168, 85, 247, 0.45);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(168, 85, 247, 0.15);
+}
+
+/* Glowing text effects */
+.text-glow-cyan {
+    text-shadow: 0 0 25px rgba(0, 210, 255, 0.6);
+}
+
+.text-glow-purple {
+    text-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+}
+
+/* Multi-color gradient text */
+.gradient-text-wave {
+    background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 45%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Background Glowing Ambient Blobs */
+.blob {
+    animation: pulseGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.18;
+    }
+    50% {
+        transform: scale(1.15) translate(30px, -20px);
+        opacity: 0.28;
+    }
+    100% {
+        transform: scale(0.9) translate(-20px, 30px);
+        opacity: 0.18;
+    }
+}
+
+/* Custom Interactive Cursor (Desktop) */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+}
+
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(0, 210, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, transform 0.08s linear;
+}
+
+/* Active Tab Button Style */
+.tab-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: rgba(8, 15, 36, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 12px;
+    color: #94a3b8;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    text-align: left;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    border-color: rgba(0, 210, 255, 0.4);
+    background: rgba(14, 25, 54, 0.6);
+}
+
+.tab-btn.active {
+    background: rgba(0, 210, 255, 0.12);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+/* 3D Card Hover Perspective */
+.perspective-container {
+    perspective: 1000px;
+}
+
+.card-3d {
+    transition: transform 0.4s ease;
+}
+
+.card-3d:hover {
+    transform: rotateY(5deg) rotateX(-3deg) scale(1.02);
+}
+
+/* Toast Notification for Clipboard Copy */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #080f24;
+    border: 1px solid var(--cyan);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 255, 0.3);
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+}
+
+#toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}

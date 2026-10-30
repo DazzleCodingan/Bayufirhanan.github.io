@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayu Firhanan (Dazzle) | Data Analyst & Data Scientist</title>
+    <meta name="description" content="Website perkenalan diri dan portofolio profesional Bayu Firhanan (Dazzle) - Data Analyst & Data Scientist.">
+    <link rel="icon" type="image/svg+xml" href="assets/avatar.svg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        bg: '#030712',
+                        card: '#080f24',
+                        cyan: '#00d2ff',
+                        'cyan-light': '#70e4ff',
+                        blue: '#38bdf8',
+                        purple: '#a855f7',
+                        'purple-light': '#c084fc',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-cyan selection:text-black overflow-hidden" id="body-content">
+    
+    <!-- CUSTOM MOUSE CURSOR (DESKTOP) -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- PRELOADER SCREEN (LIQUIDITY WAVES STYLE) -->
+    <div id="loader" class="fixed inset-0 z-[9999] bg-[#030712] flex flex-col items-center justify-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-4">
+            BAYU <span class="text-cyan">DAZZLE</span><span class="text-purple animate-pulse">.</span>
+        </h1>
+        
+        <div class="w-64 h-1 bg-slate-900 rounded-full overflow-hidden relative border border-cyan/20">
+            <div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan via-blue to-purple w-0 transition-all duration-150"></div>
+        </div>
+        
+        <div class="mt-4 font-mono text-xs text-slate-400 uppercase tracking-[0.2em]">
+            <span id="loader-text">MEMUAT DATA...</span>
+        </div>
+    </div>
+
+    <!-- AMBIENT GLOWING BACKGROUND BLOBS (CYAN & PURPLE WAVES) -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-[600px] h-[600px] bg-cyan/15 rounded-full blur-[140px] blob"></div>
+        <div class="absolute -bottom-24 -left-24 w-[550px] h-[550px] bg-purple/15 rounded-full blur-[140px] blob" style="animation-delay: -5s;"></div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast">✓ Berhasil disalin!</div>
+
+    <!-- NAVBAR STICKY -->
+    <nav class="fixed w-full z-50 glass border-b border-cyan/10 transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="text-2xl font-extrabold tracking-tighter text-white group flex items-center gap-1">
+                BAYU <span class="text-cyan group-hover:text-purple transition-colors">DAZZLE</span><span class="text-purple animate-pulse">.</span>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-widest text-slate-400">
+                <a href="#profile" class="hover:text-cyan transition-colors">/ Tentang</a>
+                <a href="#showcase" class="hover:text-cyan transition-colors">/ Proyek</a>
+                <a href="#contact" class="px-6 py-2.5 rounded-full bg-cyan text-black font-extrabold hover:bg-cyan-light transition-all shadow-[0_0_20px_rgba(0,210,255,0.45)] hover:shadow-[0_0_30px_rgba(0,210,255,0.7)] flex items-center gap-2">
+                    <span>Hubungi Saya</span>
+                    <i class="ph ph-arrow-right font-extrabold"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-white p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#030712]/95 backdrop-blur-xl border-b border-cyan/15 absolute w-full left-0 top-20 flex flex-col p-6 gap-4 shadow-2xl">
+            <a href="#profile" class="text-slate-300 hover:text-cyan font-mono border-b border-white/5 pb-3">/ Tentang Saya</a>
+            <a href="#showcase" class="text-slate-300 hover:text-cyan font-mono border-b border-white/5 pb-3">/ Portofolio & Proyek</a>
+            <a href="#contact" class="text-cyan font-bold uppercase tracking-widest pt-2">Hubungi Saya Langsung →</a>
+        </div>
+    </nav>
+
+    <!-- ========================================================
+         HERO SECTION
+         ======================================================== -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center px-6 pt-28 pb-16 z-10 text-center">
+        <!-- Status Badge (Matching Wave Radar Pill) -->
+        <div class="gsap-hero inline-flex items-center gap-2 text-cyan font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 bg-cyan/10 px-5 py-2 rounded-full border border-cyan/30 backdrop-blur-md shadow-[0_0_15px_rgba(0,210,255,0.15)]">
+            <span class="w-2 h-2 rounded-full bg-cyan animate-ping"></span>
+            <span>BE SHARP AND PRECISION</span>
+        </div>
+
+        <!-- Headline (White + Cyan-to-Purple Gradient Highlight) -->
+        <h1 class="gsap-hero text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[1.05] tracking-tight mb-8 max-w-5xl">
+            DATA ANALYST <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan via-blue to-purple text-glow-cyan">DATA SCIENTIST</span>
+        </h1>
+
+        <!-- Subtitle Introduction -->
+        <p class="gsap-hero text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+            Halo! Saya <strong class="text-white">Bayu Firhanan</strong> <span class="text-cyan font-bold">(Dazzle)</span>. Seorang Data Analyst sekaligus Data Scientist yang menggabungkan analitik mendalam dengan sains data modern. Bagi saya, <strong class="text-cyan-light">mengedepankan data adalah tujuan utama</strong> untuk mengungkap pola tersembunyi, memecahkan masalah kompleks, dan mendorong keputusan yang presisi.
+        </p>
+
+        <!-- CTA Buttons (Matching Mulai Sekarang Cyan Pill) -->
+        <div class="gsap-hero flex flex-wrap justify-center gap-5">
+            <a href="#showcase" class="bg-gradient-to-r from-cyan to-blue text-black px-8 py-3.5 rounded-full font-extrabold hover:shadow-[0_0_30px_rgba(0,210,255,0.65)] hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                <span>Lihat Portofolio</span>
+                <i class="ph ph-arrow-down font-extrabold"></i>
+            </a>
+            <a href="#contact" class="px-8 py-3.5 rounded-full font-bold text-white border border-cyan/30 bg-card/60 hover:border-purple hover:text-purple-light hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] transition-all duration-300 flex items-center gap-2">
+                <span>Hubungi Saya</span>
+                <i class="ph ph-paper-plane-tilt font-bold"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         PROFILE / ABOUT SECTION
+         ======================================================== -->
+    <section id="profile" class="py-32 relative z-10 border-t border-cyan/10">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Foto Profil dengan Efek Glowing Frame & 3D Tilt -->
+            <div class="perspective-container relative mx-auto w-full max-w-md gsap-fade-right">
+                <div class="absolute -inset-3 bg-gradient-to-tr from-cyan via-blue to-purple opacity-30 blur-2xl rounded-3xl"></div>
+                <div class="card-3d relative rounded-2xl overflow-hidden border border-cyan/25 bg-card shadow-2xl">
+                    <img src="assets/avatar.svg" alt="Foto Profil" class="w-full h-auto object-cover transition-all duration-700 hover:scale-105">
+                    <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/95 via-black/70 to-transparent">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">Bayu Firhanan</h3>
+                                <p class="text-cyan font-mono text-sm tracking-wider">DAZZLE / DATA ANALYST & SCIENTIST</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan/20 text-cyan border border-cyan/40 flex items-center gap-1.5 shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span> ONLINE
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deskripsi Profil & Keunggulan -->
+            <div class="gsap-fade-left">
+                <span class="text-purple-light font-mono text-xs uppercase tracking-[0.3em] bg-purple/15 px-3.5 py-1.5 rounded-full border border-purple/30 mb-4 inline-block">
+                    TENTANG SAYA
+                </span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                    Data Sebagai Kompas, <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-purple">Sains Sebagai Solusi</span>.
+                </h2>
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    Bekerja sebagai Data Analyst sekaligus Data Scientist memungkinkan saya melihat siklus data secara holistik—mulai dari ekstraksi data mentah, validasi hipotesis statistik, hingga pemodelan machine learning.
+                </p>
+                <p class="text-slate-400 text-base leading-relaxed mb-8">
+                    Bagi saya, data bukan sekadar angka atau tabel, melainkan instrumen paling krusial untuk menemukan efisiensi, memprediksi tren masa depan, dan mengambil keputusan bisnis yang terukur dan presisi.
+                </p>
+
+                <!-- Grid Keunggulan -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="p-6 rounded-2xl glass-card">
+                        <i class="ph ph-chart-polar text-3xl text-cyan mb-3 block"></i>
+                        <h4 class="text-white font-bold text-lg mb-1">Deep Analytics</h4>
+                        <p class="text-sm text-slate-400 leading-normal">Eksplorasi data komprehensif, Business Intelligence, dan visualisasi dashboard interaktif.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl glass-card glass-card-purple">
+                        <i class="ph ph-brain text-3xl text-purple mb-3 block"></i>
+                        <h4 class="text-white font-bold text-lg mb-1">Machine Learning</h4>
+                        <p class="text-sm text-slate-400 leading-normal">Pemodelan prediktif, algoritma klasifikasi, dan pemanfaatan sains data modern.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         PORTFOLIO & SHOWCASE (INTERACTIVE TAB HUB)
+         ======================================================== -->
+    <section id="showcase" class="py-32 bg-[#040817] relative z-10 border-t border-cyan/10">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 gsap-fade-up">
+                <div>
+                    <span class="text-cyan font-mono text-xs uppercase tracking-[0.3em] bg-cyan/10 px-3.5 py-1.5 rounded-full border border-cyan/30 mb-3 inline-block">
+                        PROYEK PILIHAN
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-3">
+                        Karya & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-purple">Eksplorasi</span>
+                    </h2>
+                    <p class="text-slate-400 max-w-xl">
+                        Koleksi proyek data analytics & data science yang pernah saya kembangkan secara end-to-end.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400 bg-card/80 px-4 py-2.5 rounded-xl border border-cyan/20 w-fit">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_#00d2ff]"></span> ARSIP AKTIF 2026
+                </div>
+            </div>
+
+            <!-- Tab Buttons & Showcase Grid -->
+            <div class="grid lg:grid-cols-4 gap-8 gsap-fade-up">
+                
+                <!-- Tab Menu (Kategori) -->
+                <div class="lg:col-span-1 space-y-3">
+                    <button class="tab-btn active" data-filter="all">
+                        <span>SEMUA PROYEK</span> <i class="ph ph-caret-right"></i>
+                    </button>
+                    <button class="tab-btn" data-filter="analysis">
+                        <span>DATA ANALYSIS</span> <i class="ph ph-caret-right"></i>
+                    </button>
+                    <button class="tab-btn" data-filter="science">
+                        <span>DATA SCIENCE & ML</span> <i class="ph ph-caret-right"></i>
+                    </button>
+                    <button class="tab-btn" data-filter="dashboard">
+                        <span>DASHBOARD & BI</span> <i class="ph ph-caret-right"></i>
+                    </button>
+
+                    <!-- Info Box -->
+                    <div class="mt-8 p-6 rounded-2xl glass border border-cyan/15 hidden lg:block">
+                        <i class="ph ph-database text-2xl text-cyan mb-2 block"></i>
+                        <h5 class="text-white font-bold text-sm mb-1">Core Data Stack</h5>
+                        <p class="text-xs text-slate-400 font-mono">Python, SQL, Pandas, Scikit-Learn, Power BI, Tableau, R.</p>
+                    </div>
+                </div>
+
+                <!-- Project Cards Grid -->
+                <div class="lg:col-span-3 grid sm:grid-cols-2 gap-6 min-h-[480px]">
+                    
+                    <!-- Proyek 1 -->
+                    <div class="project-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-category="science">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-purple-light bg-purple/15 px-2.5 py-1 rounded border border-purple/30">DATA SCIENCE</span>
+                                <span class="text-xs font-mono text-slate-500">2026</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Customer Churn & Retention Model</h3>
+                            <p class="text-sm text-slate-400 mb-5 leading-relaxed">
+                                Pemodelan prediktif machine learning untuk mendeteksi potensi churn pelanggan dengan algoritma Random Forest & XGBoost, lengkap dengan feature importance analysis.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-cyan">Python</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-purple/20 text-purple-light">Scikit-Learn</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-slate-300">XGBoost</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <a href="#" class="text-xs font-mono text-cyan hover:underline flex items-center gap-1">
+                                    LIVE DASHBOARD <i class="ph ph-arrow-up-right font-bold"></i>
+                                </a>
+                                <a href="#" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="ph ph-github-logo text-base"></i> SOURCE NOTEBOOK
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 2 -->
+                    <div class="project-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-category="dashboard">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-cyan bg-cyan/15 px-2.5 py-1 rounded border border-cyan/30">BUSINESS INTELLIGENCE</span>
+                                <span class="text-xs font-mono text-slate-500">2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Executive Revenue & Sales Dashboard</h3>
+                            <p class="text-sm text-slate-400 mb-5 leading-relaxed">
+                                Dashboard visual interaktif berbasis Power BI & SQL untuk monitoring KPI bisnis, visualisasi funnel penjualan, dan proyeksi target kuartalan.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-cyan">Power BI</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-purple/20 text-purple-light">SQL</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-slate-300">DAX</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <a href="#" class="text-xs font-mono text-cyan hover:underline flex items-center gap-1">
+                                    INTERACTIVE REPORT <i class="ph ph-arrow-up-right font-bold"></i>
+                                </a>
+                                <span class="text-xs font-mono text-slate-500">CASE STUDY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 3 -->
+                    <div class="project-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-category="analysis">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-cyan bg-cyan/15 px-2.5 py-1 rounded border border-cyan/30">DATA ANALYSIS</span>
+                                <span class="text-xs font-mono text-slate-500">2026</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Market Basket & Consumer Insights</h3>
+                            <p class="text-sm text-slate-400 mb-5 leading-relaxed">
+                                Analisis asosiasi pola belanja konsumen dengan algoritma Apriori dan eksplorasi data komprehensif untuk optimasi strategi cross-selling e-commerce.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-cyan">Python</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-purple/20 text-purple-light">Pandas</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-slate-300">Seaborn</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <a href="#" class="text-xs font-mono text-cyan hover:underline flex items-center gap-1">
+                                    VIEW INSIGHTS <i class="ph ph-arrow-up-right font-bold"></i>
+                                </a>
+                                <a href="#" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="ph ph-github-logo text-base"></i> SOURCE NOTEBOOK
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 4 -->
+                    <div class="project-item glass-card p-6 rounded-2xl flex flex-col justify-between" data-category="science">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-purple-light bg-purple/15 px-2.5 py-1 rounded border border-purple/30">DATA SCIENCE</span>
+                                <span class="text-xs font-mono text-slate-500">2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Time-Series Financial Trend Forecasting</h3>
+                            <p class="text-sm text-slate-400 mb-5 leading-relaxed">
+                                Penerapan model peramalan deret waktu untuk memprediksi tren pergerakan nilai pasar, estimasi volatilitas, dan identifikasi anomali data keuangan.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-cyan">Python</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-purple/20 text-purple-light">Prophet</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-cyan/20 text-slate-300">Statsmodels</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <a href="#" class="text-xs font-mono text-cyan hover:underline flex items-center gap-1">
+                                    VIEW FORECAST <i class="ph ph-arrow-up-right font-bold"></i>
+                                </a>
+                                <a href="#" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="ph ph-github-logo text-base"></i> SOURCE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT & SOCIAL SECTION (JOIN THE INNER CIRCLE)
+         ======================================================== -->
+    <section id="contact" class="py-32 relative z-10 border-t border-cyan/10">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            
+            <div class="max-w-2xl mx-auto mb-16 gsap-fade-up">
+                <span class="text-cyan font-mono text-xs uppercase tracking-[0.3em] bg-cyan/10 px-3.5 py-1.5 rounded-full border border-cyan/30 mb-4 inline-block">
+                    CONTACT PERSON
+                </span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
+                    Contact <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-purple">Person</span>
+                </h2>
+                <p class="text-slate-300 text-base md:text-lg">
+                    QnA ? Silahkan hubungi saya secara langsung untuk diskusi
+                </p>
+            </div>
+
+            <!-- Social Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-6 gsap-fade-up">
+                
+                <!-- Instagram Card -->
+                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-3xl flex flex-col items-center group hover:bg-[#0c1635] transition-all">
+                    <div class="w-16 h-16 rounded-2xl bg-purple/15 border border-purple/30 flex items-center justify-center text-purple text-4xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-instagram-logo"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Instagram</h3>
+                    <p class="text-xs text-slate-400 font-mono mb-4">@Bayufirhanan</p>
+                    <span class="text-xs font-mono text-cyan flex items-center gap-1 group-hover:underline">
+                        Kunjungi Profil <i class="ph ph-arrow-right"></i>
+                    </span>
+                </a>
+
+                <!-- WhatsApp VIP Direct Card (Glowing Cyan Border) -->
+                <a href="https://wa.me/6281352689234?text=Halo%20Bayu%20(Dazzle),%20saya%20tertarik%20untuk%20diskusi%20project!" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-3xl flex flex-col items-center group border-cyan/40 shadow-[0_0_30px_rgba(0,210,255,0.12)] relative overflow-hidden hover:border-cyan">
+                    <div class="absolute inset-0 bg-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-16 h-16 rounded-2xl bg-cyan/15 border border-cyan/30 flex items-center justify-center text-cyan text-4xl mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-whatsapp-logo"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1 relative z-10">WhatsApp Direct</h3>
+                    <p class="text-xs text-slate-400 font-mono mb-4 relative z-10">0813-5268-9234 (Fast Response)</p>
+                    <span class="text-xs font-mono text-cyan flex items-center gap-1 relative z-10 group-hover:underline">
+                        Chat Sekarang <i class="ph ph-arrow-right"></i>
+                    </span>
+                </a>
+
+                <!-- Email / Contact Card -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col items-center group cursor-pointer hover:bg-[#0c1635] hover:border-purple/40" onclick="copyEmail('Bayufirhanan@gmail.com')">
+                    <div class="w-16 h-16 rounded-2xl bg-purple/15 border border-purple/30 flex items-center justify-center text-purple-light text-4xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-envelope-simple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Kirim Email</h3>
+                    <p class="text-xs text-slate-400 font-mono mb-4">Bayufirhanan@gmail.com</p>
+                    <button type="button" class="text-xs font-mono text-cyan flex items-center gap-1 group-hover:underline">
+                        Salin Alamat Email <i class="ph ph-copy"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+    <footer class="bg-[#02050e] py-12 border-t border-cyan/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8 text-center md:text-left">
+                <div>
+                    <div class="text-white font-extrabold tracking-tight text-2xl">
+                        BAYU <span class="text-cyan">DAZZLE</span><span class="text-purple">.</span>
+                    </div>
+                    <p class="text-slate-500 text-xs font-mono mt-1">Mengedepankan data untuk solusi & keputusan strategis.</p>
+                </div>
+                
+                <!-- Social Icon Buttons -->
+                <div class="flex gap-4">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-card border border-cyan/15 flex items-center justify-center text-slate-400 hover:text-cyan hover:border-cyan transition-all" aria-label="GitHub">
+                        <i class="ph ph-github-logo text-xl"></i>
+                    </a>
+                    <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-card border border-purple/15 flex items-center justify-center text-slate-400 hover:text-purple-light hover:border-purple transition-all" aria-label="Instagram">
+                        <i class="ph ph-instagram-logo text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-card border border-cyan/15 flex items-center justify-center text-slate-400 hover:text-cyan hover:border-cyan transition-all" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Disclaimer & Copyright -->
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600">
+                <p>&copy; 2026 Bayu Firhanan (Dazzle). Seluruh hak cipta dilindungi undang-undang.</p>
+                <p class="text-cyan/60">Theme: Electric Cyan & Neon Purple Wave</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & Main Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
