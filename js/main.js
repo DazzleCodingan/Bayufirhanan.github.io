@@ -1,183 +1,211 @@
 /**
- * SCRIPT UTAMA - PORTFOLIO RYHAR MINIMALIST DARK
- * Fitur: Preloader, Typewriter/Role Switcher, Custom Cursor, Copy Email, Mobile Menu
+ * Bayu Firhanan (Dazzle) - Main JavaScript
+ * 1:1 Inspired by ryhar.my.id Interactions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // -------------------------------------------------------------
-    // 1. PRELOADER ANIMATION
-    // -------------------------------------------------------------
-    const loader = document.getElementById('loader');
-    const progressBar = document.getElementById('progress-bar');
-    const bodyContent = document.body;
+    // --- 1. Theme Initialization ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
 
-    if (loader && progressBar) {
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 25) + 15;
-            if (progress > 100) progress = 100;
-            
-            progressBar.style.width = `${progress}%`;
-
-            if (progress === 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    loader.style.transition = 'opacity 0.6s ease';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                        bodyContent.classList.remove('overflow-hidden');
-                    }, 600);
-                }, 300);
-            }
-        }, 70);
+    if (isDark) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
     }
 
-    // -------------------------------------------------------------
-    // 2. DYNAMIC ROLE TYPEWRITER
-    // -------------------------------------------------------------
-    const roleElem = document.getElementById('typing-role');
-    if (roleElem) {
-        const roles = [
-            'Trader & Market Analyst',
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentlyDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', currentlyDark ? 'dark' : 'light');
+            updateThemeIcons(currentlyDark);
+        });
+        updateThemeIcons(isDark);
+    }
+
+    function updateThemeIcons(dark) {
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        if (sunIcon && moonIcon) {
+            if (dark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+    }
+
+    // --- 2. Preloader Animation ---
+    const preloader = document.getElementById('preloader');
+    const preloaderBar = document.getElementById('preloader-bar');
+    
+    if (preloader && preloaderBar) {
+        // Start bar animation
+        setTimeout(() => {
+            preloaderBar.style.transform = 'translateX(0%)';
+        }, 150);
+
+        // Fade out preloader
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.pointerEvents = 'none';
+            document.body.classList.remove('overflow-hidden');
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 1200);
+    } else {
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    // --- 3. Dynamic Typewriter Effect ---
+    const typewriterElem = document.getElementById('typewriter-text');
+    if (typewriterElem) {
+        const words = [
+            'Trader',
             'Data Analyst',
             'Data Scientist',
-            'Predictive ML Modeling'
+            'Market Strategist'
         ];
-        let roleIndex = 0;
+        let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let typingDelay = 100;
+        let typeSpeed = 120;
 
         function type() {
-            const currentRole = roles[roleIndex];
+            const currentWord = words[wordIndex];
+            
             if (isDeleting) {
-                roleElem.textContent = currentRole.substring(0, charIndex - 1);
+                typewriterElem.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
-                typingDelay = 40;
+                typeSpeed = 60;
             } else {
-                roleElem.textContent = currentRole.substring(0, charIndex + 1);
+                typewriterElem.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
-                typingDelay = 100;
+                typeSpeed = 120;
             }
 
-            if (!isDeleting && charIndex === currentRole.length) {
+            if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typingDelay = 1800; // Pause when complete
+                typeSpeed = 2000; // Pause at full word
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                typingDelay = 350;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400; // Pause before typing new word
             }
 
-            setTimeout(type, typingDelay);
+            setTimeout(type, typeSpeed);
         }
 
-        setTimeout(type, 800);
+        setTimeout(type, 1400);
     }
 
-    // -------------------------------------------------------------
-    // 3. CUSTOM CURSOR
-    // -------------------------------------------------------------
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    if (cursorDot && cursorOutline && window.innerWidth > 768) {
-        let mouseX = 0, mouseY = 0;
-        let outlineX = 0, outlineY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
-        });
-
-        function animateOutline() {
-            outlineX += (mouseX - outlineX) * 0.15;
-            outlineY += (mouseY - outlineY) * 0.15;
-            cursorOutline.style.left = `${outlineX}px`;
-            cursorOutline.style.top = `${outlineY}px`;
-            requestAnimationFrame(animateOutline);
-        }
-        animateOutline();
-
-        const hoverables = document.querySelectorAll('a, button, .glass-card, .tech-card');
-        hoverables.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '52px';
-                cursorOutline.style.height = '52px';
-                cursorOutline.style.borderColor = '#38bdf8';
-                cursorOutline.style.backgroundColor = 'rgba(56, 189, 248, 0.08)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '34px';
-                cursorOutline.style.height = '34px';
-                cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                cursorOutline.style.backgroundColor = 'transparent';
-            });
-        });
-    }
-
-    // -------------------------------------------------------------
-    // 4. MOBILE MENU TOGGLE
-    // -------------------------------------------------------------
-    const mobileBtn = document.getElementById('mobile-menu-btn');
+    // --- 4. Capsule Navbar Active Link & Mobile Menu ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileBtn.querySelector('i');
-            if (icon) {
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.className = 'ph ph-list';
-                } else {
-                    icon.className = 'ph ph-x';
-                }
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isClosed = mobileMenu.classList.contains('scale-0');
+            if (isClosed) {
+                mobileMenu.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+            } else {
+                mobileMenu.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
             }
         });
 
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                const icon = mobileBtn.querySelector('i');
-                if (icon) icon.className = 'ph ph-list';
+        // Close on link click
+        mobileMenu.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                mobileMenu.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
             });
         });
     }
 
-    // -------------------------------------------------------------
-    // 5. TOAST NOTIFICATION & COPY EMAIL
-    // -------------------------------------------------------------
-    window.copyEmail = function(email) {
-        if (!navigator.clipboard) {
-            const textArea = document.createElement("textarea");
-            textArea.value = email;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            showToast(`✓ Email disalin: ${email}`);
-            return;
+    // Scroll to section function
+    window.scrollToSection = function(id) {
+        const target = document.getElementById(id);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    };
 
+    // Scroll spy for active navbar state
+    const sections = document.querySelectorAll('section[id]');
+    const navButtons = document.querySelectorAll('.nav-link-btn');
+
+    function updateActiveNav() {
+        let currentId = 'home';
+        const scrollY = window.scrollY;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 180;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                currentId = section.getAttribute('id');
+            }
+        });
+
+        navButtons.forEach(btn => {
+            const target = btn.getAttribute('data-target');
+            if (target === currentId) {
+                btn.classList.add('text-text-primary', 'font-bold');
+                btn.classList.remove('text-text-secondary', 'font-medium');
+            } else {
+                btn.classList.remove('text-text-primary', 'font-bold');
+                btn.classList.add('text-text-secondary', 'font-medium');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // --- 5. Copy Email Toast Notification ---
+    window.copyEmail = function(email = 'Bayufirhanan@gmail.com') {
         navigator.clipboard.writeText(email).then(() => {
-            showToast(`✓ Email disalin: ${email}`);
-        }).catch(err => {
-            console.error('Gagal menyalin:', err);
+            showToast(`Email ${email} berhasil disalin!`);
+        }).catch(() => {
+            showToast(`Gagal menyalin email.`);
         });
     };
 
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        if (toast) {
-            toast.textContent = msg;
-            toast.classList.add('show');
+    function showToast(message) {
+        const toast = document.getElementById('toast-notification');
+        const toastMessage = document.getElementById('toast-message');
+        if (toast && toastMessage) {
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-full', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
             setTimeout(() => {
-                toast.classList.remove('show');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-full', 'opacity-0');
             }, 3000);
         }
+    }
+
+    // --- 6. Scroll Reveal Observer ---
+    const revealElements = document.querySelectorAll('.reveal-init');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    } else {
+        revealElements.forEach(el => el.classList.add('reveal-visible'));
     }
 });

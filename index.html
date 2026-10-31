@@ -1,630 +1,669 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bayu Firhanan | Trader, Data Analyst & Data Scientist</title>
-    <meta name="description" content="Personal portfolio of Bayu Firhanan (Dazzle). Trader, Data Analyst, and Data Scientist specializing in financial market analytics, technical precision, and predictive modeling.">
+    <meta name="description" content="Personal portfolio of Bayu Firhanan (Dazzle). Trader, Data Analyst, and Data Scientist specializing in financial market analytics, technical precision, and predictive data modeling.">
     <link rel="icon" type="image/svg+xml" href="assets/avatar.svg">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins & Space Mono (Ala RyHar) -->
+
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons CDN -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <!-- Custom Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Tailwind Configuration -->
+    <!-- Tailwind Configuration (RyHar Theme Variables) -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
                     },
                     colors: {
-                        background: '#0a0b0e',
-                        card: '#12141a',
-                        thirdary: '#181b24',
-                        'text-primary': '#ffffff',
-                        'text-secondary': '#94a3b8',
-                        cyan: '#00e5ff',
-                        blue: '#38bdf8',
-                        purple: '#a855f7',
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        thirdary: 'var(--thirdary)',
+                        'text-primary': 'var(--text-primary)',
+                        'text-secondary': 'var(--text-secondary)',
+                        'button-hover': 'var(--button-hover)',
+                        'neon-color': 'var(--neon-color)',
+                        'button-hero': 'var(--button-hero)',
+                        'button-hero-hover': 'var(--button-hero-hover)',
+                        'bg-project-card': 'var(--bg-project-card)',
+                        'text-project-card': 'var(--text-project-card)',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-background text-text-primary antialiased selection:bg-blue selection:text-background overflow-hidden" id="body-content">
+<body class="bg-background text-text-primary antialiased overflow-x-hidden selection:bg-text-primary selection:text-background overflow-hidden" id="body-content">
 
-    <!-- CUSTOM MOUSE CURSOR -->
-    <div class="cursor-dot hidden md:block"></div>
-    <div class="cursor-outline hidden md:block"></div>
-
-    <!-- PRELOADER SCREEN (ALA RYHAR) -->
-    <div id="loader" class="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- ==========================================
+         PRELOADER (Exact 1:1 RyHar)
+         ========================================== -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden transition-all duration-700">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-text-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="relative overflow-hidden h-16 flex items-center justify-center">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-text-primary tracking-tighter">
-                BAYU <span class="text-text-secondary/70">FIRHANAN</span><span class="text-blue">.</span>
-            </h1>
+            <h1 class="text-4xl md:text-5xl font-black text-text-primary tracking-tighter">BAYU FIRHANAN.</h1>
         </div>
-        <div class="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-text-secondary mt-2 font-mono">
-            TRADER &bull; DATA ANALYST &bull; DATA SCIENTIST
+        <div class="relative overflow-hidden h-8 mt-2 flex items-center justify-center">
+            <p class="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-text-secondary">TRADER • DATA ANALYST • DATA SCIENTIST</p>
         </div>
-        <div class="mt-8 w-48 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
-            <div id="progress-bar" class="absolute inset-y-0 left-0 bg-white rounded-full w-0 transition-all duration-150"></div>
+        <div class="mt-8 w-48 md:w-64 h-[2px] bg-text-secondary/20 rounded-full overflow-hidden relative">
+            <div id="preloader-bar" class="absolute inset-y-0 left-0 w-full bg-text-primary rounded-full transition-transform duration-1000 ease-out" style="transform: translateX(-100%);"></div>
         </div>
     </div>
 
-    <!-- AMBIENT GLOWING BACKGROUND ORBS -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="bg-ambient-blob -top-32 -left-32 w-[600px] h-[600px] bg-blue/15"></div>
-        <div class="bg-ambient-blob top-1/2 -right-32 w-[650px] h-[650px] bg-purple/15"></div>
-        <div class="bg-ambient-blob -bottom-32 left-1/3 w-[550px] h-[550px] bg-cyan/15"></div>
-    </div>
-
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast">✓ Berhasil disalin!</div>
-
-    <!-- ========================================================
-         STICKY NAVBAR (ALA RYHAR)
-         ======================================================== -->
-    <nav class="fixed w-full z-50 glass-nav transition-all">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#home" class="text-xl md:text-2xl font-black tracking-tight text-white group flex items-center gap-1.5">
-                <span>BAYU</span><span class="text-blue group-hover:text-cyan transition-colors">FIRHANAN</span><span class="w-1.5 h-1.5 rounded-full bg-blue"></span>
-            </a>
-            
-            <!-- Desktop Navigation Links -->
-            <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-text-secondary">
-                <a href="#home" class="hover:text-white transition-colors">Home</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#techstack" class="hover:text-white transition-colors">Tech Stack</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-                <a href="#contact" class="cursor-pointer text-xs font-bold bg-white text-background px-5 py-2.5 rounded-xl flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(255,255,255,0.2)] transition-all duration-300">
-                    <span>Contact Me</span>
-                    <i class="ph ph-arrow-right font-bold"></i>
-                </a>
-            </div>
-
-            <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-white p-2 focus:outline-none" aria-label="Toggle Menu">
-                <i class="ph ph-list"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-background/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 top-20 flex flex-col p-6 gap-4 shadow-2xl">
-            <a href="#home" class="text-text-secondary hover:text-white font-medium text-sm border-b border-white/5 pb-3">Home</a>
-            <a href="#about" class="text-text-secondary hover:text-white font-medium text-sm border-b border-white/5 pb-3">About Me</a>
-            <a href="#techstack" class="text-text-secondary hover:text-white font-medium text-sm border-b border-white/5 pb-3">My Tech Stack</a>
-            <a href="#contact" class="text-blue font-bold text-sm tracking-wider uppercase pt-2 flex items-center justify-between">
-                <span>Contact Person</span>
-                <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-    </nav>
-
-    <!-- ========================================================
-         HERO SECTION (ALA RYHAR: 2 COLUMNS + FLOATING BADGES)
-         ======================================================== -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-28 pb-20 z-10 overflow-hidden">
-        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
-            <!-- Left Column: Typography, Roles & Actions -->
-            <div class="flex flex-col gap-3">
-                <span class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-text-secondary mb-1 flex items-center gap-2 font-mono">
-                    <span class="w-2 h-2 rounded-full bg-blue animate-ping"></span>
-                    WELCOME TO MY PORTFOLIO
-                </span>
-
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight text-white">
-                    Halo, Saya <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400">Bayu Firhanan</span>
-                </h1>
-
-                <!-- Dynamic Typewriter Subtitle -->
-                <div class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white mt-1 min-h-[36px] flex items-center">
-                    <span>I am a&nbsp;</span>
-                    <span id="typing-role" class="text-blue underline decoration-cyan underline-offset-4 font-bold">Trader & Market Analyst</span>
-                    <span class="animate-pulse text-white font-light ml-1">|</span>
-                </div>
-
-                <p class="text-text-secondary text-sm sm:text-base md:text-lg leading-relaxed font-normal mt-4 max-w-xl">
-                    Menggabungkan intuisi tajam analisis pasar keuangan dengan metodologi analitik data dan sains data modern. Mengedepankan data objektif dan presisi eksekusi sebagai kompas utama.
-                </p>
-
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mt-6">
-                    <a href="#contact" class="cursor-pointer text-sm font-bold bg-white text-background px-8 py-4 rounded-xl flex items-center justify-center gap-3 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] transition-all duration-300">
-                        <span>Hubungi Saya</span>
-                        <i class="ph ph-arrow-right font-bold"></i>
-                    </a>
-                    <a href="#techstack" class="cursor-pointer text-sm font-bold border border-white/15 hover:border-white text-white px-8 py-4 rounded-xl flex items-center justify-center gap-3 bg-white/[0.02] backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
-                        <span>Lihat Tech Stack</span>
-                        <i class="ph ph-terminal-window font-bold"></i>
+    <!-- ==========================================
+         FLOATING CAPSULE NAVBAR (Exact 1:1 RyHar)
+         ========================================== -->
+    <div class="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none w-full">
+        <div class="w-full max-w-5xl pointer-events-auto">
+            <div class="relative flex items-center justify-between py-3 md:py-4 px-6 md:px-8 bg-background/80 backdrop-blur-md border border-text-secondary/20 rounded-full shadow-lg transition-colors duration-300">
+                <!-- Brand / Logo -->
+                <div class="flex flex-row items-center">
+                    <a href="#home" class="text-xl md:text-2xl font-black text-text-primary tracking-tighter hover:opacity-80 transition-opacity">
+                        BAYU<span class="text-text-secondary">.</span>
                     </a>
                 </div>
 
-                <!-- Social Icons Row (RyHar Style) -->
-                <div class="mt-10 pt-6 border-t border-white/10">
-                    <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-3 block font-mono">CONNECT WITH ME</span>
-                    <div class="flex flex-row gap-3">
-                        <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="p-3 border border-white/10 rounded-xl hover:border-white hover:bg-white hover:text-background text-white transition-all duration-300" aria-label="WhatsApp">
-                            <i class="ph ph-whatsapp-logo text-xl"></i>
-                        </a>
-                        <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="p-3 border border-white/10 rounded-xl hover:border-white hover:bg-white hover:text-background text-white transition-all duration-300" aria-label="Instagram">
-                            <i class="ph ph-instagram-logo text-xl"></i>
-                        </a>
-                        <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="p-3 border border-white/10 rounded-xl hover:border-white hover:bg-white hover:text-background text-white transition-all duration-300" aria-label="Telegram">
-                            <i class="ph ph-telegram-logo text-xl"></i>
-                        </a>
-                        <a href="https://github.com/DazzleCodingan" target="_blank" rel="noopener noreferrer" class="p-3 border border-white/10 rounded-xl hover:border-white hover:bg-white hover:text-background text-white transition-all duration-300" aria-label="GitHub">
-                            <i class="ph ph-github-logo text-xl"></i>
-                        </a>
-                        <button onclick="copyEmail('Bayufirhanan@gmail.com')" class="p-3 border border-white/10 rounded-xl hover:border-white hover:bg-white hover:text-background text-white transition-all duration-300" aria-label="Copy Email">
-                            <i class="ph ph-envelope-simple text-xl"></i>
+                <!-- Desktop Nav Items -->
+                <nav class="flex-row md:gap-8 lg:gap-10 hidden lg:flex items-center">
+                    <button onclick="scrollToSection('home')" data-target="home" class="nav-link-btn text-text-primary font-bold cursor-pointer text-sm md:text-base tracking-wide flex flex-row items-center transition-colors duration-200 ease-in-out">
+                        Home
+                    </button>
+                    <button onclick="scrollToSection('about')" data-target="about" class="nav-link-btn text-text-secondary font-medium hover:text-text-primary cursor-pointer text-sm md:text-base tracking-wide flex flex-row items-center transition-colors duration-200 ease-in-out">
+                        About
+                    </button>
+                    <button onclick="scrollToSection('techstack')" data-target="techstack" class="nav-link-btn text-text-secondary font-medium hover:text-text-primary cursor-pointer text-sm md:text-base tracking-wide flex flex-row items-center transition-colors duration-200 ease-in-out">
+                        Tech Stack
+                    </button>
+                    <button onclick="scrollToSection('contacts')" data-target="contacts" class="nav-link-btn text-text-secondary font-medium hover:text-text-primary cursor-pointer text-sm md:text-base tracking-wide flex flex-row items-center transition-colors duration-200 ease-in-out">
+                        Contacts
+                    </button>
+                </nav>
+
+                <!-- Actions: Theme Switcher & Mobile Menu Trigger -->
+                <div class="flex items-center gap-4">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" aria-label="Toggle Theme" class="cursor-pointer text-text-secondary hover:text-text-primary transition-colors p-1.5 rounded-full hover:bg-thirdary/60">
+                        <!-- Sun Icon (Shown in Dark Mode) -->
+                        <svg id="theme-icon-sun" class="w-5 h-5 md:w-6 md:h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <!-- Moon Icon (Shown in Light Mode) -->
+                        <svg id="theme-icon-moon" class="w-5 h-5 md:w-6 md:h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+
+                    <!-- Mobile Menu Hamburger Button -->
+                    <button id="mobile-menu-btn" aria-label="Open Menu" class="lg:hidden text-text-secondary hover:text-text-primary transition-colors p-1">
+                        <svg class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Dropdown -->
+                <div id="mobile-menu" class="scale-0 opacity-0 pointer-events-none lg:hidden transform absolute top-16 right-4 z-50 origin-top-right transition-all duration-300 ease-in-out">
+                    <div class="flex flex-col gap-4 bg-background/95 backdrop-blur-md border border-text-secondary/20 p-6 rounded-2xl shadow-xl w-52">
+                        <button onclick="scrollToSection('home')" class="text-left text-text-primary font-bold text-sm hover:text-text-primary transition-colors">
+                            Home
+                        </button>
+                        <button onclick="scrollToSection('about')" class="text-left text-text-secondary font-medium text-sm hover:text-text-primary transition-colors">
+                            About
+                        </button>
+                        <button onclick="scrollToSection('techstack')" class="text-left text-text-secondary font-medium text-sm hover:text-text-primary transition-colors">
+                            Tech Stack
+                        </button>
+                        <button onclick="scrollToSection('contacts')" class="text-left text-text-secondary font-medium text-sm hover:text-text-primary transition-colors">
+                            Contacts
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Column: Avatar Photo + Ambient Aura + Floating Badges (Ala RyHar) -->
-            <div class="flex flex-col items-center justify-center relative mt-8 md:mt-0">
-                <!-- Glowing Ambient Aura -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-blue via-purple to-cyan rounded-full scale-110 opacity-30 blur-3xl pointer-events-none"></div>
-                
-                <!-- Main Avatar Card Frame -->
-                <div class="relative z-10 p-3 bg-background border border-white/15 rounded-3xl shadow-2xl group max-w-sm w-full">
-                    <img src="assets/avatar.svg" alt="Bayu Firhanan" class="w-full h-auto rounded-2xl object-cover transition-all duration-700 group-hover:scale-105">
-                </div>
-
-                <!-- Floating Badges Around Photo (RyHar Signature Feature) -->
-                <div class="absolute -bottom-6 -left-2 md:-left-6 z-20 flex flex-col gap-2.5">
-                    <!-- Badge 1: Market Precision -->
-                    <div class="floating flex items-center gap-3 bg-card/90 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
-                        <div class="bg-blue text-background p-2 rounded-xl flex items-center justify-center">
-                            <i class="ph ph-chart-line-up text-lg font-bold"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-white whitespace-nowrap">TradingView & MT5 Precision</span>
-                    </div>
-
-                    <!-- Badge 2: Data Science & ML -->
-                    <div class="floating-delayed flex items-center gap-3 bg-card/90 backdrop-blur-md border border-white/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
-                        <div class="bg-purple text-white p-2 rounded-xl flex items-center justify-center">
-                            <i class="ph ph-brain text-lg font-bold"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-white whitespace-nowrap">Data Science & Machine Learning</span>
-                    </div>
-                </div>
-
-                <!-- Badge 3: Web3 Ecosystem -->
-                <div class="floating-delayed-2 absolute -top-4 -right-2 md:-right-6 z-20 hidden sm:flex items-center gap-2.5 bg-card/90 backdrop-blur-md border border-white/10 p-2.5 pr-4 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
-                    <div class="bg-cyan text-background p-2 rounded-xl flex items-center justify-center">
-                        <i class="ph ph-wallet text-base font-bold"></i>
-                    </div>
-                    <span class="text-xs font-semibold text-white whitespace-nowrap">Phantom Web3 Crypto</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========================================================
-         INFINITE MARQUEE TICKER (ALA RYHAR)
-         ======================================================== -->
-    <div class="w-full border-y border-white/10 bg-white/[0.015] py-5 overflow-hidden select-none">
-        <div class="animate-marquee flex gap-8 whitespace-nowrap text-xs md:text-sm font-bold tracking-[0.25em] text-text-secondary uppercase font-mono">
-            <span>&bull; FINANCIAL TRADER</span>
-            <span>&bull; DATA ANALYST</span>
-            <span>&bull; DATA SCIENTIST</span>
-            <span>&bull; TECHNICAL PRECISION</span>
-            <span>&bull; MACHINE LEARNING MODELING</span>
-            <span>&bull; CRYPTO & SOLANA ECOSYSTEM</span>
-            <span>&bull; PREDICTIVE ANALYTICS</span>
-            <span>&bull; FINANCIAL TRADER</span>
-            <span>&bull; DATA ANALYST</span>
-            <span>&bull; DATA SCIENTIST</span>
-            <span>&bull; TECHNICAL PRECISION</span>
-            <span>&bull; MACHINE LEARNING MODELING</span>
-            <span>&bull; CRYPTO & SOLANA ECOSYSTEM</span>
-            <span>&bull; PREDICTIVE ANALYTICS</span>
         </div>
     </div>
 
-    <!-- ========================================================
-         ABOUT SECTION (ALA RYHAR: DETAILS GRID)
-         ======================================================== -->
-    <section id="about" class="py-24 md:py-32 relative z-10 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            
-            <!-- Section Header -->
-            <div class="mb-16 md:mb-20">
-                <span class="text-xs font-bold tracking-[0.25em] text-blue uppercase mb-3 block font-mono">
-                    GET TO KNOW ME
-                </span>
-                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-                    Tentang <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">Saya</span>.
-                </h2>
+    <!-- ==========================================
+         HERO SECTION (#home) (Exact 1:1 RyHar)
+         ========================================== -->
+    <section id="home" class="w-full max-w-7xl mx-auto cursor-default grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center px-6 md:px-12 py-24 md:py-36 overflow-hidden">
+        <!-- Left Column: Typography & CTAs -->
+        <div class="flex flex-col gap-2 reveal-init">
+            <div>
+                <h1 class="text-text-primary text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">Bayu</span>
+                </h1>
             </div>
 
-            <!-- Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                
-                <!-- Left: Card Photo Frame -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="glass-card p-3 rounded-3xl border border-white/15 max-w-md w-full shadow-2xl relative group">
-                        <img src="assets/avatar.svg" alt="Bayu Firhanan Profile" class="w-full h-auto rounded-2xl object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-background/90 backdrop-blur-md border border-white/10 flex items-center justify-between">
-                            <div>
-                                <h4 class="text-sm font-bold text-white">Bayu Firhanan</h4>
-                                <p class="text-xs text-blue font-mono">TRADER &bull; DATA SCIENTIST</p>
-                            </div>
-                            <span class="w-2.5 h-2.5 rounded-full bg-cyan animate-pulse"></span>
-                        </div>
+            <!-- Dynamic Typewriter Line -->
+            <div class="relative flex items-center h-10 mt-1">
+                <span id="typewriter-text" class="text-text-primary text-xl md:text-2xl lg:text-3xl font-bold tracking-tight"></span>
+                <span class="animate-cursor text-text-secondary text-2xl lg:text-3xl font-light ml-0.5">|</span>
+            </div>
+
+            <!-- Bio Statement -->
+            <div class="max-w-xl mt-4">
+                <p class="text-text-secondary text-base md:text-lg leading-relaxed font-medium">
+                    Halo! Saya <strong class="text-text-primary font-semibold">Bayu Firhanan (Dazzle)</strong>. Sebagai seorang <span class="text-text-primary">Trader</span>, <span class="text-text-primary">Data Analyst</span>, dan <span class="text-text-primary">Data Scientist</span>, saya memadukan pemahaman mendalam struktur pasar finansial dengan ketajaman analisis statistik untuk menghasilkan eksekusi yang objektif, presisi, dan terukur.
+                </p>
+            </div>
+
+            <!-- Buttons Action Row -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                <!-- Primary Button (Exact RyHar White Pill Button) -->
+                <button onclick="scrollToSection('contacts')" class="cursor-pointer text-sm md:text-base font-bold bg-text-primary text-background px-8 py-4 rounded-xl flex flex-row items-center justify-center gap-3 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)] transition-all duration-300 ease-out group">
+                    <span>Hubungi Saya</span>
+                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
+                    </svg>
+                </button>
+
+                <!-- Secondary Button (Exact RyHar Glass Outline Pill) -->
+                <button onclick="scrollToSection('techstack')" class="cursor-pointer text-sm md:text-base font-bold border-2 border-text-secondary/20 hover:border-text-primary text-text-primary px-8 py-4 rounded-xl flex flex-row items-center justify-center gap-3 hover:-translate-y-1.5 hover:scale-[1.02] hover:bg-thirdary/40 transition-all duration-300 ease-out bg-background/50 backdrop-blur-sm shadow-[0_4px_10px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_10px_rgba(255,255,255,0.02)] group">
+                    <span>My Tech Stack</span>
+                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Social Links Ribbon (Exact RyHar Style) -->
+            <div class="mt-12 pt-8 border-t border-text-secondary/10">
+                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-4 block">Connect with me</span>
+                <div class="flex flex-row gap-4">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="p-3 border border-text-secondary/20 rounded-xl hover:border-text-primary hover:bg-text-primary hover:text-background text-text-primary transition-all duration-300">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="p-3 border border-text-secondary/20 rounded-xl hover:border-text-primary hover:bg-text-primary hover:text-background text-text-primary transition-all duration-300">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="p-3 border border-text-secondary/20 rounded-xl hover:border-text-primary hover:bg-text-primary hover:text-background text-text-primary transition-all duration-300">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/DazzleCodingan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-3 border border-text-secondary/20 rounded-xl hover:border-text-primary hover:bg-text-primary hover:text-background text-text-primary transition-all duration-300">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Avatar & Floating Capsule Badges (Exact 1:1 RyHar) -->
+        <div class="flex flex-col items-center justify-center relative mt-12 md:mt-0 reveal-init">
+            <!-- Background Radial Blur -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-thirdary to-background rounded-full scale-110 opacity-50 blur-2xl pointer-events-none"></div>
+
+            <!-- Avatar Wrapper with Border & Hover Lift -->
+            <div class="relative z-10 p-2 bg-background border border-text-secondary/10 rounded-full shadow-2xl group">
+                <img src="assets/avatar.svg" alt="Bayu Firhanan" class="rounded-full object-cover aspect-square floating grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 cursor-pointer w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            </div>
+
+            <!-- Floating Badges Column (RyHar Style) -->
+            <div class="absolute -bottom-10 md:-bottom-12 -left-4 md:-left-12 z-20 flex flex-col gap-3">
+                <!-- Badge 1: Trader -->
+                <div class="floating flex items-center gap-3 bg-background/90 backdrop-blur-md border border-text-secondary/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                    <div class="bg-text-primary text-background p-2 rounded-xl">
+                        <!-- Chart Trending Up Icon -->
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
                     </div>
+                    <span class="text-xs md:text-sm font-semibold text-text-primary whitespace-nowrap">Trader & Market Analyst</span>
                 </div>
 
-                <!-- Right: Bio & Personal Details Grid (RyHar Structure) -->
-                <div class="lg:col-span-7 flex flex-col justify-center">
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4 border-b border-white/10 pb-4">
-                        Pondasi Kuat Antara Analisis Pasar & Sains Data
-                    </h3>
-                    <p class="text-text-secondary text-sm md:text-base leading-relaxed mb-4">
-                        Saya bergerak secara simultan di dunia <strong>Trading Pasar Finansial</strong>, <strong>Data Analysis</strong>, dan <strong>Data Science</strong>. Memanfaatkan data historis dan real-time untuk membedah dinamika harga secara terstruktur.
-                    </p>
-                    <p class="text-text-secondary text-sm md:text-base leading-relaxed mb-8">
-                        Bagi saya, pasar finansial bukanlah arena tebak-tebakan, melainkan sistem kompleks penuh pola yang dapat diurai dengan pemodelan statistik, kedisiplinan eksekusi, dan manajemen risiko yang ketat.
-                    </p>
+                <!-- Badge 2: Data Science -->
+                <div class="floating flex items-center gap-3 bg-background/90 backdrop-blur-md border border-text-secondary/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform duration-300" style="animation-delay: 150ms;">
+                    <div class="bg-text-primary text-background p-2 rounded-xl">
+                        <!-- Terminal / Code Icon -->
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs md:text-sm font-semibold text-text-primary whitespace-nowrap">Data Scientist & Analytics</span>
+                </div>
 
-                    <!-- Personal Details Grid (Exact RyHar Pattern) -->
-                    <div class="mt-4 pt-6 border-t border-white/10">
-                        <h4 class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-6 font-mono flex items-center gap-2">
-                            <span class="w-2 h-2 bg-blue rounded-full"></span>
-                            PERSONAL DETAILS
+                <!-- Badge 3: Quantitative -->
+                <div class="floating flex items-center gap-3 bg-background/90 backdrop-blur-md border border-text-secondary/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform duration-300" style="animation-delay: 300ms;">
+                    <div class="bg-text-primary text-background p-2 rounded-xl">
+                        <!-- Database / Shield Icon -->
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs md:text-sm font-semibold text-text-primary whitespace-nowrap">Quantitative Strategy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         INFINITE MARQUEE RIBBON (Exact 1:1 RyHar)
+         ========================================== -->
+    <div class="mt-20 md:mt-28 pb-6 border-b border-text-secondary/10 overflow-hidden select-none">
+        <div class="animate-infinite-scroll flex gap-8 whitespace-nowrap text-center font-sans text-4xl md:text-6xl font-black tracking-tighter text-thirdary dark:text-button-hover opacity-50">
+            <span>HELLO I'M BAYU FIRHANAN</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>TRADER & MARKET ANALYST</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>DATA SCIENTIST</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>QUANTITATIVE RESEARCH</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>HELLO I'M BAYU FIRHANAN</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>TRADER & MARKET ANALYST</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>DATA SCIENTIST</span>
+            <span class="text-text-secondary/30">•</span>
+            <span>QUANTITATIVE RESEARCH</span>
+            <span class="text-text-secondary/30">•</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         ABOUT SECTION (#about) (Exact 1:1 RyHar)
+         ========================================== -->
+    <section id="about" class="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background overflow-hidden border-t border-text-secondary/10">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left reveal-init">
+            <h2 class="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Discover</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">About Me</h3>
+        </div>
+
+        <!-- Section Content Grid -->
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 px-6 md:px-12">
+            <!-- Left Portrait Card (lg:col-span-5) -->
+            <div class="lg:col-span-5 hidden lg:flex flex-col items-center justify-center relative reveal-init">
+                <div class="w-full max-w-[380px] lg:max-w-[440px] relative">
+                    <div class="relative z-10 p-2 bg-background border border-text-secondary/10 rounded-3xl shadow-2xl overflow-hidden aspect-[4/5] w-full group transition-all duration-500 hover:shadow-[0_20px_40px_-5px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+                        <img src="assets/avatar.svg" alt="Bayu Firhanan Portrait" class="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500 rounded-3xl"></div>
+                    </div>
+                    <!-- Ambient Watermark -->
+                    <div class="absolute -bottom-8 -left-8 text-8xl lg:text-9xl font-black text-text-secondary/5 select-none pointer-events-none tracking-tighter mix-blend-multiply dark:mix-blend-screen z-0">
+                        BAYU
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Narrative & Personal Details (lg:col-span-7) -->
+            <div class="lg:col-span-7 flex flex-col justify-center reveal-init">
+                <!-- Dual Narrative Columns -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div class="flex flex-col">
+                        <h4 class="text-lg md:text-xl font-bold text-text-primary mb-4 flex items-center border-b border-text-secondary/20 pb-4">
+                            Financial Market & Trading
                         </h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10">
-                            <!-- Detail 1 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">Nama Lengkap</span>
-                                <span class="text-sm sm:text-base font-semibold text-white">Bayu Firhanan (Dazzle)</span>
-                            </div>
-                            <!-- Detail 2 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">Role Utama</span>
-                                <span class="text-sm sm:text-base font-semibold text-white">Trader & Data Scientist</span>
-                            </div>
-                            <!-- Detail 3 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">Fokus Pasar</span>
-                                <span class="text-sm sm:text-base font-semibold text-white">Crypto (Web3), Forex & Data</span>
-                            </div>
-                            <!-- Detail 4 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">WhatsApp</span>
-                                <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="text-sm sm:text-base font-semibold text-blue hover:underline">
-                                    +62 813-5268-9234
-                                </a>
-                            </div>
-                            <!-- Detail 5 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">Email</span>
-                                <a href="mailto:Bayufirhanan@gmail.com" class="text-sm sm:text-base font-semibold text-white hover:text-blue transition-colors underline decoration-white/20 underline-offset-4">
-                                    Bayufirhanan@gmail.com
-                                </a>
-                            </div>
-                            <!-- Detail 6 -->
-                            <div class="flex flex-col p-3 rounded-xl hover:bg-white/[0.03] transition-colors border border-transparent hover:border-white/5">
-                                <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1 font-mono">Instagram</span>
-                                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="text-sm sm:text-base font-semibold text-white hover:text-purple transition-colors">
-                                    @Bayufirhanan
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========================================================
-         MY TECH STACK SECTION (USER REQUESTED: TRADINGVIEW, PHANTOM, MT5, TELEGRAM)
-         ======================================================== -->
-    <section id="techstack" class="py-24 md:py-32 relative z-10 border-t border-white/10 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            
-            <!-- Section Header -->
-            <div class="mb-16 md:mb-20">
-                <span class="text-xs font-bold tracking-[0.25em] text-blue uppercase mb-3 block font-mono">
-                    TOOLS & PLATFORMS
-                </span>
-                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-                    My Tech <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">Stack</span>.
-                </h2>
-                <p class="text-text-secondary text-sm md:text-base mt-4 max-w-2xl font-normal">
-                    Aplikasi dan platform utama yang saya gunakan sehari-hari untuk riset pasar, analisis teknikal, eksekusi trading, dan pengolahan sains data.
-                </p>
-            </div>
-
-            <!-- Tech Stack Grid (6 Solid Apps Focused on Trading & Data) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- 1. TradingView -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-blue/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- Custom TradingView SVG Logo -->
-                            <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 group-hover:scale-110 transition-transform">
-                                <svg viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-white">
-                                    <path d="M0 6h6v16H0V6zm9-6h6v28H9V0zm9 10h6v18h-6V10zm9-6h6v24h-6V4z" fill="#38bdf8"/>
-                                </svg>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-blue/10 text-blue border border-blue/20">
-                                Charting
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">TradingView</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Platform utama untuk analisis teknikal multi-timeframe, indikator kustom Pine Script, dan pemetaan likuiditas pasar aset global.
+                        <p class="text-base text-text-secondary leading-relaxed font-medium">
+                            Dunia trading menuntut kedisiplinan dan pembacaan psikologi pasar yang tajam. Saya berfokus pada analisis teknikal multi-timeframe, liquidity sweeps, dan pergerakan orderbook di pasar crypto (terutama Solana DEX ecosystem) serta valuta asing (Forex). Setiap setup dirancang dengan risk-to-reward ratio yang terhitung ketat.
                         </p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Technical Analysis</span>
-                        <i class="ph ph-trend-up text-blue font-bold"></i>
-                    </div>
-                </div>
-
-                <!-- 2. Phantom -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-purple/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- Custom Phantom SVG Logo -->
-                            <div class="w-14 h-14 rounded-2xl bg-purple/10 border border-purple/20 flex items-center justify-center p-3 group-hover:scale-110 transition-transform">
-                                <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
-                                    <path d="M110.8 62.4C108.4 43.6 92.4 29.2 73.2 29.2c-21.2 0-38.4 17.2-38.4 38.4 0 4.8.8 9.2 2.4 13.2L28 98.8h17.6l6-10.4c6 4.4 13.6 7.2 21.6 7.2 21.2 0 38.4-17.2 38.4-38.4-.8 1.6-.8 3.6-.8 5.2z" fill="#a855f7"/>
-                                    <circle cx="58" cy="58" r="6" fill="#fff"/>
-                                    <circle cx="82" cy="58" r="6" fill="#fff"/>
-                                </svg>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-purple/15 text-purple border border-purple/30">
-                                Web3 & Crypto
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Phantom</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Manajemen dompet aset digital terdesentralisasi, interaksi smart contract, dan eksekusi transaksi on-chain ekosistem Solana & DeFi.
+                    <div class="flex flex-col">
+                        <h4 class="text-lg md:text-xl font-bold text-text-primary mb-4 flex items-center border-b border-text-secondary/20 pb-4">
+                            Data Analytics & Science
+                        </h4>
+                        <p class="text-base text-text-secondary leading-relaxed font-medium">
+                            Sebagai Data Analyst dan Data Scientist, saya percaya bahwa strategi trading terbaik lahir dari data historis yang divalidasi. Menggunakan Python, SQL, dan visualisasi interaktif, saya mengolah dataset besar, menguji model prediktif, dan mengidentifikasi pola probabilitas tinggi yang dapat dieksekusi secara sistematis.
                         </p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Solana Ecosystem</span>
-                        <i class="ph ph-lightning text-purple font-bold"></i>
-                    </div>
                 </div>
 
-                <!-- 3. MetaTrader 5 (MT5) -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-cyan/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- MetaTrader 5 Icon -->
-                            <div class="w-14 h-14 rounded-2xl bg-cyan/10 border border-cyan/20 flex items-center justify-center text-cyan text-3xl group-hover:scale-110 transition-transform">
-                                <i class="ph ph-gauge"></i>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-cyan/15 text-cyan border border-cyan/30">
-                                Execution
-                            </span>
+                <!-- Personal Details Table Grid (Exact RyHar Structure) -->
+                <div class="mt-16 md:mt-20">
+                    <h4 class="text-lg md:text-xl font-bold text-text-primary mb-8 border-b border-text-secondary/20 pb-4 border-l-4 border-l-text-primary pl-4">
+                        Personal Details
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10">
+                        <!-- Item 1: Name -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Name</span>
+                            <span class="text-base font-semibold text-text-primary">Bayu Firhanan (Dazzle)</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">MetaTrader 5</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Platform eksekusi order trading tingkat institusional untuk Forex & komoditas, manajemen posisi presisi, dan analisis spread real-time.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Institutional Trading</span>
-                        <i class="ph ph-currency-dollar text-cyan font-bold"></i>
-                    </div>
-                </div>
 
-                <!-- 4. Telegram -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-blue/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- Telegram Icon -->
-                            <div class="w-14 h-14 rounded-2xl bg-blue/10 border border-blue/20 flex items-center justify-center text-blue text-3xl group-hover:scale-110 transition-transform">
-                                <i class="ph ph-telegram-logo"></i>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-blue/10 text-blue border border-blue/20">
-                                Signals & Bots
-                            </span>
+                        <!-- Item 2: Focus / Roles -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Roles</span>
+                            <span class="text-base font-semibold text-text-primary">Trader, Data Analyst & Scientist</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Telegram</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Pusat komunikasi real-time, integrasi bot notifikasi pergerakan likuiditas pasar, dan koordinasi komunitas trading eksklusif.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Real-time Alerts</span>
-                        <i class="ph ph-paper-plane-tilt text-blue font-bold"></i>
-                    </div>
-                </div>
 
-                <!-- 5. Python & Jupyter (Data Science) -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-yellow-400/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- Python Icon -->
-                            <div class="w-14 h-14 rounded-2xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-300 text-3xl group-hover:scale-110 transition-transform">
-                                <i class="ph ph-code"></i>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-yellow-400/10 text-yellow-300 border border-yellow-400/20">
-                                Data Science
-                            </span>
+                        <!-- Item 3: Phone -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Phone / WhatsApp</span>
+                            <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-text-primary hover:text-text-secondary transition-colors underline decoration-text-secondary/30 underline-offset-4">
+                                +62 813-5268-9234
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Python & Pandas</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Ekstraksi data kuantitatif, backtesting algoritma trading historis, dan perancangan model machine learning prediktif.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Data Modeling</span>
-                        <i class="ph ph-brackets-curly text-yellow-300 font-bold"></i>
-                    </div>
-                </div>
 
-                <!-- 6. SQL & Database Analytics -->
-                <div class="tech-card glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-cyan/50 transition-all duration-300 hover:-translate-y-2 group">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <!-- SQL Database Icon -->
-                            <div class="w-14 h-14 rounded-2xl bg-cyan/10 border border-cyan/20 flex items-center justify-center text-cyan text-3xl group-hover:scale-110 transition-transform">
-                                <i class="ph ph-database"></i>
-                            </div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-cyan/15 text-cyan border border-cyan/30">
-                                Database
-                            </span>
+                        <!-- Item 4: Email -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Email</span>
+                            <a href="mailto:Bayufirhanan@gmail.com" class="text-base font-semibold text-text-primary hover:text-text-secondary transition-colors underline decoration-text-secondary/30 underline-offset-4">
+                                Bayufirhanan@gmail.com
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">SQL & BigQuery</h3>
-                        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                            Penyimpanan data historis bervolume tinggi, penulisan kueri agregasi metrik, dan otomasi pipeline data pipeline terstruktur.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-text-secondary">
-                        <span>Data Warehousing</span>
-                        <i class="ph ph-hard-drives text-cyan font-bold"></i>
+
+                        <!-- Item 5: Primary Markets -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Market Focus</span>
+                            <span class="text-base font-semibold text-text-primary">Crypto (Solana DEX) & Forex</span>
+                        </div>
+
+                        <!-- Item 6: Instagram -->
+                        <div class="flex flex-col p-2 -m-2 rounded-xl transition-colors duration-300 hover:bg-thirdary/40">
+                            <span class="text-xs uppercase tracking-widest font-bold text-text-secondary mb-1">Instagram</span>
+                            <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-text-primary hover:text-text-secondary transition-colors underline decoration-text-secondary/30 underline-offset-4">
+                                @Bayufirhanan
+                            </a>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ========================================================
-         CONTACT SECTION (ALA RYHAR: NO MAPS, DIRECT CONTACT CARDS)
-         ======================================================== -->
-    <section id="contact" class="py-24 md:py-32 relative z-10 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            
-            <!-- Section Header -->
-            <div class="mb-16 md:mb-20 text-center max-w-2xl mx-auto">
-                <span class="text-xs font-bold tracking-[0.25em] text-blue uppercase mb-3 block font-mono">
-                    GET IN TOUCH
-                </span>
-                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-                    Contact <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">Person</span>.
-                </h2>
-                <p class="text-text-secondary text-sm md:text-base mt-4 font-normal">
-                    QnA ? Silahkan hubungi saya secara langsung untuk diskusi
-                </p>
+    <!-- ==========================================
+         TECH STACK SECTION (#techstack) (Exact 1:1 RyHar)
+         Customized with: TradingView, Phantom, MT5, Telegram, Python, SQL
+         ========================================== -->
+    <section id="techstack" class="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background relative border-t border-text-secondary/10 overflow-hidden">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left reveal-init">
+            <h2 class="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Skills & Tools</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">My Tech Stack</h3>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-16">
+            <!-- Group 1: Trading & Execution Applications -->
+            <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start reveal-init">
+                <div class="md:w-1/3">
+                    <h4 class="text-2xl font-black text-text-primary tracking-tight mb-2">Trading & Execution</h4>
+                    <p class="text-text-secondary font-medium text-sm leading-relaxed">
+                        Aplikasi dan platform utama untuk analisis teknikal tingkat lanjut, manajemen posisi on-chain, eksekusi forex, dan channel intelijen pasar.
+                    </p>
+                </div>
+                <div class="md:w-2/3 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">
+                    <!-- Tool 1: TradingView -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- TradingView Custom Logo SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 36 28" fill="currentColor">
+                                <path d="M14 22H7V6h7v16zM0 22h4V12H0v10zm17 0h7V0h-7v22zm10 0h7V8h-7v14z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">TradingView</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Charting & Pine Script</span>
+                    </div>
+
+                    <!-- Tool 2: MetaTrader 5 (MT5) -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- MT5 / Forex Icon SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h8m-4-4v8"/>
+                                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+                                <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">MetaTrader 5</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Forex & CFD Execution</span>
+                    </div>
+
+                    <!-- Tool 3: Phantom Wallet -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- Phantom Ghost Icon SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12c0 3.2 1.5 6.04 3.84 7.84.44.34 1.05.07 1.13-.48l.38-2.67c.06-.41.38-.73.79-.79l1.45-.21c.54-.08.97-.49 1.07-1.02.16-.86.9-1.47 1.78-1.47h.12c.98 0 1.78.8 1.78 1.78v.5c0 .55.45 1 1 1h.5c.55 0 1 .45 1 1v.78c0 .44.29.83.71.94l2.25.6c.45.12.92-.16 1.03-.61.64-2.58.37-5.32-.78-7.66C19.26 5.8 15.88 2 12 2zm-3 8c-.83 0-1.5-.67-1.5-1.5S8.17 7 9 7s1.5.67 1.5 1.5S9.83 10 9 10zm6 0c-.83 0-1.5-.67-1.5-1.5S14.17 7 15 7s1.5.67 1.5 1.5S15.83 10 15 10z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">Phantom</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Solana Web3 & DEX</span>
+                    </div>
+
+                    <!-- Tool 4: Telegram -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- Telegram Paper Plane SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">Telegram</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Alpha Alerts & Bots</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Direct Contact Channels Grid (Clean RyHar Card Style) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                
-                <!-- WhatsApp Card -->
-                <a href="https://wa.me/6281352689234?text=Halo%20Bayu%20(Dazzle),%20saya%20tertarik%20untuk%20diskusi%20project!" target="_blank" rel="noopener noreferrer" class="group bg-card/70 border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-[#25D366] hover:bg-[#25D366]/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white group-hover:text-[#25D366] group-hover:scale-110 transition-all mb-4">
-                            <i class="ph ph-whatsapp-logo text-2xl"></i>
+            <!-- Group 2: Data Science & Analytics Stack -->
+            <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start reveal-init">
+                <div class="md:w-1/3">
+                    <h4 class="text-2xl font-black text-text-primary tracking-tight mb-2">Data Science & Analytics</h4>
+                    <p class="text-text-secondary font-medium text-sm leading-relaxed">
+                        Toolkit komputasi untuk data wrangling, backtesting algoritma, pemodelan statistik, dan analisis kuantitatif.
+                    </p>
+                </div>
+                <div class="md:w-2/3 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">
+                    <!-- Tool 5: Python -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- Python SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.914 0C5.825 0 6.2 2.656 6.2 2.656l.006 2.753h5.815v.825H3.89S0 5.766 0 11.878c0 6.113 3.4 5.922 3.4 5.922h2.031v-2.859s-.11-3.414 3.352-3.414h5.777s3.242.055 3.242-3.149V2.656S18.266 0 11.914 0zM8.7 1.832a1.055 1.055 0 1 1 0 2.11 1.055 1.055 0 0 1 0-2.11zm3.386 22.168c6.089 0 5.714-2.656 5.714-2.656l-.006-2.753h-5.815v-.825h8.131s3.89.468 3.89-5.644c0-6.113-3.4-5.922-3.4-5.922h-2.031v2.859s.11 3.414-3.352 3.414H9.454s-3.242-.055-3.242 3.149v5.727s-.468 2.656 5.874 2.656zm3.214-1.832a1.055 1.055 0 1 1 0-2.11 1.055 1.055 0 0 1 0 2.11z"/>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-1">WhatsApp Direct</h3>
-                        <p class="text-xs text-text-secondary font-mono">0813-5268-9234</p>
+                        <span class="text-sm font-bold text-text-primary text-center">Python</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Pandas, NumPy, ML</span>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-text-secondary group-hover:text-[#25D366]">
+
+                    <!-- Tool 6: SQL & Database -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- SQL / Database SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">SQL Database</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">BigQuery & Relational</span>
+                    </div>
+
+                    <!-- Tool 7: Jupyter Notebook -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- Jupyter / Research Icon SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5a7.5 7.5 0 0 0-7.25 5.56 1 1 0 1 1-1.94-.48A9.5 9.5 0 0 1 12 2.5a9.5 9.5 0 0 1 9.19 7.08 1 1 0 1 1-1.94.48A7.5 7.5 0 0 0 12 4.5zm0 15a7.5 7.5 0 0 0 7.25-5.56 1 1 0 1 1 1.94.48A9.5 9.5 0 0 1 12 21.5a9.5 9.5 0 0 1-9.19-7.08 1 1 0 1 1 1.94-.48A7.5 7.5 0 0 0 12 19.5zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">Jupyter Lab</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Exploratory Analysis</span>
+                    </div>
+
+                    <!-- Tool 8: Financial Spreadsheets -->
+                    <div class="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                        <div class="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none text-text-primary group-hover:scale-110 transition-transform">
+                            <!-- Analytics Sheet SVG -->
+                            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
+                                <path stroke-linecap="round" stroke-width="2" d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-primary text-center">Excel & Sheets</span>
+                        <span class="text-[10px] text-text-secondary mt-1 font-medium">Financial Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CONTACTS SECTION (#contacts) (Exact 1:1 RyHar, NO MAPS)
+         ========================================== -->
+    <section id="contacts" class="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background relative overflow-hidden border-t border-text-secondary/10">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left reveal-init">
+            <h2 class="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Get In Touch</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">Contact Me</h3>
+            <p class="text-text-secondary text-base md:text-lg mt-4 max-w-2xl font-medium">
+                Punya pertanyaan, ide kolaborasi trading, analisis data finansial, atau diskusi pasar? Silahkan hubungi saya langsung melalui salah satu opsi kontak berikut:
+            </p>
+        </div>
+
+        <!-- Contact Cards Grid (No Maps as explicitly requested) -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal-init">
+                <!-- Card 1: WhatsApp -->
+                <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="group bg-background border border-text-secondary/20 rounded-2xl p-6 flex flex-col justify-between hover:border-[#25D366] hover:bg-[#25D366]/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-text-secondary/10 flex items-center justify-center text-text-primary group-hover:text-[#25D366] group-hover:scale-110 transition-all duration-300 mb-6">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-text-primary mb-1">WhatsApp</h4>
+                        <p class="text-sm font-semibold text-text-secondary">+62 813-5268-9234</p>
+                    </div>
+                    <div class="mt-8 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#25D366]">
                         <span>Chat WhatsApp</span>
-                        <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
                     </div>
                 </a>
 
-                <!-- Instagram Card -->
-                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="group bg-card/70 border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E1306C] hover:bg-[#E1306C]/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5">
+                <!-- Card 2: Telegram -->
+                <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="group bg-background border border-text-secondary/20 rounded-2xl p-6 flex flex-col justify-between hover:border-[#229ED9] hover:bg-[#229ED9]/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white group-hover:text-[#E1306C] group-hover:scale-110 transition-all mb-4">
-                            <i class="ph ph-instagram-logo text-2xl"></i>
+                        <div class="w-12 h-12 rounded-full bg-text-secondary/10 flex items-center justify-center text-text-primary group-hover:text-[#229ED9] group-hover:scale-110 transition-all duration-300 mb-6">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-1">Instagram</h3>
-                        <p class="text-xs text-text-secondary font-mono">@Bayufirhanan</p>
+                        <h4 class="text-xl font-bold text-text-primary mb-1">Telegram</h4>
+                        <p class="text-sm font-semibold text-text-secondary">@Bayufirhanan</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-text-secondary group-hover:text-[#E1306C]">
-                        <span>Kunjungi Profil</span>
-                        <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    <div class="mt-8 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#229ED9]">
+                        <span>Send Message</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
                     </div>
                 </a>
 
-                <!-- Telegram Card -->
-                <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="group bg-card/70 border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-blue hover:bg-blue/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5">
+                <!-- Card 3: Instagram -->
+                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="group bg-background border border-text-secondary/20 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E1306C] hover:bg-[#E1306C]/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white group-hover:text-blue group-hover:scale-110 transition-all mb-4">
-                            <i class="ph ph-telegram-logo text-2xl"></i>
+                        <div class="w-12 h-12 rounded-full bg-text-secondary/10 flex items-center justify-center text-text-primary group-hover:text-[#E1306C] group-hover:scale-110 transition-all duration-300 mb-6">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-1">Telegram</h3>
-                        <p class="text-xs text-text-secondary font-mono">@Bayufirhanan</p>
+                        <h4 class="text-xl font-bold text-text-primary mb-1">Instagram</h4>
+                        <p class="text-sm font-semibold text-text-secondary">@Bayufirhanan</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-text-secondary group-hover:text-blue">
-                        <span>Direct Message</span>
-                        <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    <div class="mt-8 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#E1306C]">
+                        <span>Follow & DM</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
                     </div>
                 </a>
 
-                <!-- Email Card -->
-                <div onclick="copyEmail('Bayufirhanan@gmail.com')" class="group bg-card/70 border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-white hover:bg-white/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 cursor-pointer">
+                <!-- Card 4: Email (Interactive with Copy) -->
+                <div onclick="copyEmail('Bayufirhanan@gmail.com')" class="group cursor-pointer bg-background border border-text-secondary/20 rounded-2xl p-6 flex flex-col justify-between hover:border-text-primary hover:bg-text-secondary/5 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white group-hover:text-white group-hover:scale-110 transition-all mb-4">
-                            <i class="ph ph-envelope-simple text-2xl"></i>
+                        <div class="w-12 h-12 rounded-full bg-text-secondary/10 flex items-center justify-center text-text-primary group-hover:scale-110 transition-all duration-300 mb-6">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-1">Kirim Email</h3>
-                        <p class="text-xs text-text-secondary font-mono truncate">Bayufirhanan@gmail.com</p>
+                        <h4 class="text-xl font-bold text-text-primary mb-1">Email</h4>
+                        <p class="text-sm font-semibold text-text-secondary truncate">Bayufirhanan@gmail.com</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-text-secondary group-hover:text-white">
+                    <div class="mt-8 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-text-primary">
                         <span>Salin Email</span>
-                        <i class="ph ph-copy group-hover:scale-110 transition-transform"></i>
+                        <svg class="w-4 h-4 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="9" y="9" width="13" height="13" rx="2" stroke-width="2"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        </svg>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ========================================================
-         FOOTER (ALA RYHAR)
-         ======================================================== -->
-    <footer class="w-full border-t border-white/10 bg-background py-10">
+    <!-- ==========================================
+         FOOTER (Exact 1:1 RyHar)
+         ========================================== -->
+    <footer class="w-full border-t border-text-secondary/10 bg-background py-8">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
-                <div class="text-white font-extrabold text-lg tracking-tight">
-                    BAYU <span class="text-blue">FIRHANAN</span><span class="text-white">.</span>
-                </div>
-                <p class="text-xs font-medium text-text-secondary mt-1">
-                    Trader, Data Analyst & Data Scientist
+                <p class="text-sm font-medium text-text-secondary">
+                    © 2026 Bayu Firhanan (Dazzle). All Rights Reserved.
+                </p>
+                <p class="text-xs font-medium text-text-secondary/70 mt-1">
+                    Trader • Data Analyst • Data Scientist
                 </p>
             </div>
-            
-            <!-- Footer Social Links -->
-            <div class="flex flex-wrap justify-center items-center gap-6 text-xs font-bold uppercase tracking-widest text-text-secondary">
-                <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp</a>
-                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
-                <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Telegram</a>
-                <a href="https://github.com/DazzleCodingan" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+            <div class="flex flex-wrap justify-center items-center gap-6">
+                <a href="https://wa.me/6281352689234" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-widest">
+                    WhatsApp
+                </a>
+                <a href="https://t.me/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-widest">
+                    Telegram
+                </a>
+                <a href="https://instagram.com/Bayufirhanan" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-widest">
+                    Instagram
+                </a>
+                <a href="https://github.com/DazzleCodingan" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-widest">
+                    GitHub
+                </a>
             </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 md:px-12 mt-8 pt-6 border-t border-white/5 text-center text-[11px] font-mono text-text-secondary/60">
-            &copy; 2026 Bayu Firhanan (Dazzle). Seluruh hak cipta dilindungi undang-undang.
         </div>
     </footer>
 
-    <!-- Main JavaScript -->
+    <!-- ==========================================
+         TOAST NOTIFICATION (Email Copied Alert)
+         ========================================== -->
+    <div id="toast-notification" class="translate-y-full opacity-0 fixed bottom-6 right-6 z-[100] transition-all duration-500 ease-out pointer-events-none">
+        <div class="bg-foreground text-text-primary border border-text-secondary/20 shadow-2xl rounded-xl px-5 py-3.5 flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span id="toast-message" class="text-sm font-semibold">Berhasil disalin!</span>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Logic -->
     <script src="js/main.js"></script>
 </body>
 </html>
