@@ -1,6 +1,6 @@
 /**
  * Bayu Firhanan (Dazzle) - Main JavaScript
- * 1:1 Inspired by ryhar.my.id Interactions
+ * 1:1 Inspired by ryhar.my.id Interactions - Clean, Snappy & Optimized
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloaderBar = document.getElementById('preloader-bar');
     
     if (preloader && preloaderBar) {
-        // Start bar animation
+        // Fast, smooth loading bar
         setTimeout(() => {
             preloaderBar.style.transform = 'translateX(0%)';
-        }, 150);
+        }, 100);
 
         // Fade out preloader
         setTimeout(() => {
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('overflow-hidden');
             setTimeout(() => {
                 preloader.remove();
-            }, 600);
-        }, 1200);
+            }, 500);
+        }, 900);
     } else {
         document.body.classList.remove('overflow-hidden');
     }
@@ -66,15 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriterElem = document.getElementById('typewriter-text');
     if (typewriterElem) {
         const words = [
-            'Trader',
+            'Crypto & Forex Trader',
             'Data Analyst',
             'Data Scientist',
-            'Market Strategist'
+            'Solana DEX Specialist'
         ];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let typeSpeed = 120;
+        let typeSpeed = 100;
 
         function type() {
             const currentWord = words[wordIndex];
@@ -82,26 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isDeleting) {
                 typewriterElem.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
-                typeSpeed = 60;
+                typeSpeed = 50;
             } else {
                 typewriterElem.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
-                typeSpeed = 120;
+                typeSpeed = 100;
             }
 
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at full word
+                typeSpeed = 1800; // Natural pause at full word
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 400; // Pause before typing new word
+                typeSpeed = 350; // Pause before typing new word
             }
 
             setTimeout(type, typeSpeed);
         }
 
-        setTimeout(type, 1400);
+        setTimeout(type, 1100);
     }
 
     // --- 4. Capsule Navbar Active Link & Mobile Menu ---
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
 
     // --- 5. Copy Email Toast Notification ---
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-full', 'opacity-0');
-            }, 3000);
+            }, 2500);
         }
     }
 
