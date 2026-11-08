@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typewriterElem) {
         const words = [
             'Crypto & Forex Trader',
-            'Data Analyst',
-            'Data Scientist',
-            'Solana DEX Specialist'
+            'Solana DEX Specialist',
+            'Price Action Trader',
+            'Risk-First Execution'
         ];
         let wordIndex = 0;
         let charIndex = 0;
